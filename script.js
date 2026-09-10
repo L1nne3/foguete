@@ -1,7 +1,19 @@
-// 4. Função JavaScript que dispara ao concluir o login do Google
 function handleCredentialResponse(response) {
   console.log("Token JWT de login:", response.credential);
-  alert("Login efetuado com sucesso!");
+
+  const emailInput = document.getElementById('alunoEmail');
+  const status = document.getElementById('inscricaoStatus');
+
+  if (emailInput) {
+    const emailFromGoogle = response?.email || 'usuario@gmail.com';
+    emailInput.value = emailFromGoogle;
+    emailInput.placeholder = 'aluno@gmail.com';
+  }
+
+  if (status) {
+    status.textContent = 'Login com Google concluído. Agora finalize a inscrição da equipe.';
+    status.style.color = '#7ef0a8';
+  }
 }
 
 const STORAGE_KEY = 'fogueteCupTeams';
