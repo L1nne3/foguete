@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Campeonato de Foguetes</title>
+    <!-- Script de autenticação do Google -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Configuração do Google Sign-In invisível/onload -->
+    <div id="g_id_onload"
+       data-client_id="692131866710-0t2q4adnkuv75e0mugm1c5jfus3ma1p6.apps.googleusercontent.com"
+       data-callback="handleCredentialResponse">
+    </div>
+
+    <header class="topbar">
+      <div class="container nav">
+        <a href="#inicio" class="brand" aria-label="Página inicial">
+          <span class="brand-mark">🚀</span>
+          <span>Foguete Cup</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Navegação principal">
+          <a href="#sobre">Sobre</a>
+          <a href="#categorias">Categorias</a>
+          <a href="#cronograma">Cronograma</a>
+          <a href="#regras">Regras</a>
+        </nav>
+
+        <a class="btn btn-primary" href="#inscricao">Inscreva-se</a>
+      </div>
+    </header>
+
+    <main id="inicio">
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">Maior evento de foguetes do ano</span>
+            <h1>Prepare seu <span class="highlight">foguete</span> e vá ao infinito e além.</h1>
+            <p>
+              O 1º Campeonato de Foguetes do Colégio Estadual Igléa Grollmann.
+            </p>
+
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#inscricao">Quero participar</a>
+              <a class="btn btn-secondary" href="#sobre">Saiba mais</a>
+            </div>
+
+            <div class="meta" aria-live="polite">
+              <span><strong data-team-count>0</strong> equipes inscritas</span>
+              <span><strong>2</strong> categorias</span>
+              <span><strong>1</strong> grande final</span>
+            </div>
+          </div>
+
+          <div class="rocket-showcase" aria-label="Ilustração de foguete">
+            <div class="orbit one"></div>
+            <div class="orbit two"></div>
+
+            <div class="rocket-card">
+              <div class="rocket-visual">
+                <div class="rocket">
+                  <div class="rocket-nose"></div>
+                  <div class="rocket-body"></div>
+                  <div class="rocket-window"></div>
+                  <div class="rocket-fin-left"></div>
+                  <div class="rocket-fin-right"></div>
+                  <div class="rocket-flame"></div>
+                </div>
+              </div>
+
+              <div class="rocket-stats">
+                <div class="stat">
+                  <strong>280m</strong>
+                  <span>Altura</span>
+                </div>
+                <div class="stat">
+                  <strong>42s</strong>
+                  <span>Voo</span>
+                </div>
+                <div class="stat">
+                  <strong>15k</strong>
+                  <span>Visitantes</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Sobre o campeonato</span>
+            <h2>Uma competição feita para quem sonha alto.</h2>
+            <p>
+              O Foguete Cup foi criado para incentivar a criatividade, a inovação e o trabalho em equipe entre estudantes do Colégio Estadual Igléa Grollmann. Com desafios técnicos e práticos, o campeonato oferece uma
+              experiência única para todas as equipes.
+            </p>
+          </div>
+
+          <div class="feature-grid">
+            <article class="feature">
+              <div class="icon">🧠</div>
+              <h3>Inovação</h3>
+              <p>
+                Desenvolva tecnologias criativas e explore novas ideias de design, propulsão e navegação.
+              </p>
+            </article>
+
+            <article class="feature">
+              <div class="icon">🎯</div>
+              <h3>Precisão</h3>
+              <p>
+                Teste a estabilidade, a performance e a confiabilidade dos seus modelos em condições reais.
+              </p>
+            </article>
+
+            <article class="feature">
+              <div class="icon">🏆</div>
+              <h3>Competição</h3>
+              <p>
+                Viva a emoção de competir em um evento com avaliação técnica, apresentação e voo final.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="categorias">
+        <div class="container info-grid">
+          <div>
+            <div class="section-head">
+              <span class="eyebrow">Categorias</span>
+              <h2>Competição para diferentes níveis de experiência.</h2>
+            </div>
+
+            <ul class="content-list">
+              <li>Premiação para o foguete mais bonito.</li>
+              <li>Premiação para o maior alcance horizontal 1º, 2º e 3º lugares.</li>
+            </ul>
+
+            <div class="badge-stack">
+              <span class="badge">Foguetes</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>O que será avaliado?</h3>
+            <p>
+              Cada equipe será analisada por desempenho, segurança, criatividade, documentação e
+              apresentação do projeto.
+            </p>
+            <p>
+              O objetivo é valorizar tanto o conhecimento técnico quanto a capacidade de execução e inovação.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="cronograma">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Cronograma</span>
+            <h2>Fique por dentro da etapa principal.</h2>
+          </div>
+
+          <div class="schedule-grid">
+            <div class="schedule-item">
+              <span class="date">15/08</span>
+              <h3>Inscrições</h3>
+              <p>Abertura das inscrições e envio dos projetos iniciais.</p>
+            </div>
+
+            <div class="schedule-item">
+              <span class="date">25/08</span>
+              <h3>Validação</h3>
+              <p>Revisão dos projetos e confirmação das equipes participantes.</p>
+            </div>
+
+            <div class="schedule-item">
+              <span class="date">05/09</span>
+              <h3>Teste técnico</h3>
+              <p>Verificação de segurança, materiais e critérios de voo.</p>
+            </div>
+
+            <div class="schedule-item">
+              <span class="date">16/10</span>
+              <h3>Grande final</h3>
+              <p>Apresentação final, voo e premiação para as melhores equipes.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="regras">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Regras</span>
+            <h2>Segurança e fair play em primeiro lugar.</h2>
+          </div>
+
+          <div class="rules-grid">
+            <article class="rule">
+              <div class="rule-number">1</div>
+              <h3>Segurança</h3>
+              <p>Todos os protótipos devem seguir normas rigorosas de segurança e inspeção.</p>
+            </article>
+
+            <article class="rule">
+              <div class="rule-number">2</div>
+              <h3>Documentação</h3>
+              <p>Cada time deve apresentar projeto, materiais usados e plano de voo.</p>
+            </article>
+
+            <article class="rule">
+              <div class="rule-number">3</div>
+              <h3>Desempenho</h3>
+              <p>A pontuação considera altura, estabilidade, precisão e qualidade da execução.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="inscricao" class="cta">
+        <div class="container">
+          <div class="cta-box">
+            <span class="eyebrow">Inscrições abertas</span>
+            <h2>Participe do campeonato e mostre seu potencial.</h2>
+            <p>
+              Junte sua equipe, desenvolva seu protótipo e venha competir em um evento que une inovação,
+              tecnologia e emoção.
+            </p>
+
+            <div class="auth-panel">
+              <div class="auth-buttons">
+                <button type="button" class="btn btn-secondary auth-btn" data-provider="google">Entrar com Google</button>
+                <button type="button" class="btn btn-secondary auth-btn" data-provider="escola">Entrar com @escola</button>
+              </div>
+
+              <!-- Botão customizado do Google Sign-In -->
+              <div class="g_id_signin"
+                 data-type="standard"
+                 data-shape="pill"
+                 data-theme="filled_blue"
+                 data-text="continue_with"
+                 data-size="large"
+                 data-width="300">
+              </div>
+
+              <form id="inscricaoForm" class="auth-form">
+                <div class="form-row">
+                  <label for="alunoEmail">E-mail do líder da equipe (@escola)</label>
+                  <input id="alunoEmail" type="email" name="email" placeholder="lider@escola.pr.gov.br" required />
+                </div>
+
+                <div class="form-row">
+                  <label for="nomeEquipe">Nome da equipe</label>
+                  <input id="nomeEquipe" type="text" name="equipe" placeholder="Ex.: Equipe Aurora" required maxlength="60" />
+                </div>
+
+                <div class="form-row">
+                  <label for="nomeLider">Nome do estudante líder</label>
+                  <input id="nomeLider" type="text" name="lider" placeholder="Ex.: João da Silva" required maxlength="60" />
+                </div>
+
+                <div class="form-row">
+                  <label for="aluno2">Nome do 2º estudante</label>
+                  <input id="aluno2" type="text" name="aluno2" placeholder="Ex.: Maria Souza" required maxlength="60" />
+                </div>
+
+                <div class="form-row">
+                  <label for="aluno3">Nome do 3º estudante</label>
+                  <input id="aluno3" type="text" name="aluno3" placeholder="Ex.: Pedro Costa" required maxlength="60" />
+                </div>
+
+                <div class="form-row">
+                  <label for="aluno4">Nome do 4º estudante</label>
+                  <input id="aluno4" type="text" name="aluno4" placeholder="Ex.: Ana Oliveira" required maxlength="60" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Registrar equipe</button>
+              </form>
+
+              <p class="muted-text">
+                O aluno líder é o responsável pelo e-mail institucional da escola e representa a equipe junto com mais 3 estudantes.
+              </p>
+
+              <p id="inscricaoStatus" class="status-message" aria-live="polite">Aguardando primeira inscrição.</p>
+
+              <div class="team-list-wrap">
+                <h3>Equipes inscritas</h3>
+                <ul id="teamList" class="team-list">
+                  <li>Nenhuma equipe registrada ainda.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container" style="display:flex; justify-content:space-between; gap:18px; flex-wrap:wrap;">
+        <span>© 2026 Foguete Cup</span>
+        <span>Evento de inovação, voo e competição</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
