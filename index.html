@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <!-- 1. Script de autenticação do Google -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Campeonato de Foguetes</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Script de autenticação do Google -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- 2. Seu ID do Cliente inserido no atributo data-client_id -->
-    <div id="g_id_onload"
-         data-client_id="692131866710-0t2q4adnkuv75e0mugm1c5jfus3ma1p6.apps.googleusercontent.com"
-         data-callback="handleCredentialResponse">
-    </div>
+    <!-- Configuração do Google Sign-In -->
+    <div
+      id="g_id_onload"
+      data-client_id="692131866710-0t2q4adnkuv75e0mugm1c5jfus3ma1p6.apps.googleusercontent.com"
+      data-callback="handleCredentialResponse"
+      data-auto_prompt="false"
+    ></div>
 
     <header class="topbar">
       <div class="container nav">
@@ -105,25 +106,19 @@
             <article class="feature">
               <div class="icon">🧠</div>
               <h3>Inovação</h3>
-              <p>
-                Desenvolva tecnologias criativas e explore novas ideias de design, propulsão e navegação.
-              </p>
+              <p>Desenvolva tecnologias criativas e explore novas ideias de design, propulsão e navegação.</p>
             </article>
 
             <article class="feature">
               <div class="icon">🎯</div>
               <h3>Precisão</h3>
-              <p>
-                Teste a estabilidade, a performance e a confiabilidade dos seus modelos em condições reais.
-              </p>
+              <p>Teste a estabilidade, a performance e a confiabilidade dos seus modelos em condições reais.</p>
             </article>
 
             <article class="feature">
               <div class="icon">🏆</div>
               <h3>Competição</h3>
-              <p>
-                Viva a emoção de competir em um evento com avaliação técnica, apresentação e voo final.
-              </p>
+              <p>Viva a emoção de competir em um evento com avaliação técnica, apresentação e voo final.</p>
             </article>
           </div>
         </div>
@@ -236,16 +231,6 @@
               <div class="auth-buttons">
                 <button type="button" class="btn btn-secondary auth-btn" data-provider="google">Entrar com Google</button>
                 <button type="button" class="btn btn-secondary auth-btn" data-provider="escola">Entrar com @escola</button>
-              </div>
-
-              <!-- 3. Elemento onde o botão de login do Google vai renderizar -->
-              <div class="g_id_signin"
-                   data-type="standard"
-                   data-shape="pill"
-                   data-theme="filled_blue"
-                   data-text="continue_with"
-                   data-size="large"
-                   data-width="300">
               </div>
 
               <form id="inscricaoForm" class="auth-form">
