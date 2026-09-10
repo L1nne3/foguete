@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
+    <!-- 1. Script de autenticação do Google -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Campeonato de Foguetes</title>
-    <!-- Script de autenticação do Google -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <!-- Configuração do Google Sign-In invisível/onload -->
+    <!-- 2. Seu ID do Cliente inserido no atributo data-client_id -->
     <div id="g_id_onload"
-       data-client_id="692131866710-60dqb84r1goej7am3cabgjjp5dh2qqrt.apps.googleusercontent.com"
-       data-callback="handleCredentialResponse">
+         data-client_id="692131866710-0t2q4adnkuv75e0mugm1c5jfus3ma1p6.apps.googleusercontent.com"
+         data-callback="handleCredentialResponse">
     </div>
 
     <header class="topbar">
@@ -96,8 +97,7 @@
             <span class="eyebrow">Sobre o campeonato</span>
             <h2>Uma competição feita para quem sonha alto.</h2>
             <p>
-              O Foguete Cup foi criado para incentivar a criatividade, a inovação e o trabalho em equipe entre estudantes do Colégio Estadual Igléa Grollmann. Com desafios técnicos e práticos, o campeonato oferece uma
-              experiência única para todas as equipes.
+              O Foguete Cup foi criado para incentivar a criatividade, a inovação e o trabalho em equipe entre estudantes do Colégio Estadual Igléa Grollmann. Com desafios técnicos e práticos, o campeonato oferece uma experiência única para todas as equipes.
             </p>
           </div>
 
@@ -150,8 +150,7 @@
           <div class="card">
             <h3>O que será avaliado?</h3>
             <p>
-              Cada equipe será analisada por desempenho, segurança, criatividade, documentação e
-              apresentação do projeto.
+              Cada equipe será analisada por desempenho, segurança, criatividade, documentação e apresentação do projeto.
             </p>
             <p>
               O objetivo é valorizar tanto o conhecimento técnico quanto a capacidade de execução e inovação.
@@ -230,8 +229,7 @@
             <span class="eyebrow">Inscrições abertas</span>
             <h2>Participe do campeonato e mostre seu potencial.</h2>
             <p>
-              Junte sua equipe, desenvolva seu protótipo e venha competir em um evento que une inovação,
-              tecnologia e emoção.
+              Junte sua equipe, desenvolva seu protótipo e venha competir em um evento que une inovação, tecnologia e emoção.
             </p>
 
             <div class="auth-panel">
@@ -240,14 +238,14 @@
                 <button type="button" class="btn btn-secondary auth-btn" data-provider="escola">Entrar com @escola</button>
               </div>
 
-              <!-- Botão customizado do Google Sign-In -->
+              <!-- 3. Elemento onde o botão de login do Google vai renderizar -->
               <div class="g_id_signin"
-                 data-type="standard"
-                 data-shape="pill"
-                 data-theme="filled_blue"
-                 data-text="continue_with"
-                 data-size="large"
-                 data-width="300">
+                   data-type="standard"
+                   data-shape="pill"
+                   data-theme="filled_blue"
+                   data-text="continue_with"
+                   data-size="large"
+                   data-width="300">
               </div>
 
               <form id="inscricaoForm" class="auth-form">
