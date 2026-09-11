@@ -518,23 +518,6 @@ section {
   padding: 24px;
 }
 
-.auth-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 18px;
-}
-
-.auth-btn {
-  flex: 1 1 220px;
-  min-width: 180px;
-}
-
-.auth-btn.is-active {
-  border-color: rgba(147, 76, 240, 0.6);
-  box-shadow: 0 0 0 3px rgba(133, 76, 240, 0.12);
-}
-
 .auth-form {
   display: grid;
   gap: 18px;
@@ -603,54 +586,6 @@ section {
   margin-top: 16px;
   color: var(--success);
   font-weight: 700;
-}
-
-.admin-panel {
-  margin-top: 26px;
-  border-top: 1px solid var(--border);
-  padding-top: 22px;
-}
-
-.admin-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
-}
-
-.admin-header h3 {
-  margin: 0;
-  font-size: 1.15rem;
-}
-
-.admin-login {
-  display: grid;
-  gap: 12px;
-  margin-bottom: 18px;
-}
-
-.admin-login input {
-  width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.02);
-  color: var(--text);
-}
-
-.admin-content {
-  display: none;
-}
-
-.admin-content.is-visible {
-  display: block;
-}
-
-.admin-content p {
-  color: var(--muted);
-  margin: 0 0 12px;
 }
 
 footer {
