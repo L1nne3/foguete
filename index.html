@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Configuração do Google Sign-In -->
+    <!-- ID do cliente Google -->
     <div
       id="g_id_onload"
       data-client_id="692131866710-0t2q4adnkuv75e0mugm1c5jfus3ma1p6.apps.googleusercontent.com"
@@ -98,7 +98,8 @@
             <span class="eyebrow">Sobre o campeonato</span>
             <h2>Uma competição feita para quem sonha alto.</h2>
             <p>
-              O Foguete Cup foi criado para incentivar a criatividade, a inovação e o trabalho em equipe entre estudantes do Colégio Estadual Igléa Grollmann. Com desafios técnicos e práticos, o campeonato oferece uma experiência única para todas as equipes.
+              O Foguete Cup foi criado para incentivar a criatividade, a inovação e o trabalho em equipe entre estudantes do Colégio Estadual Igléa Grollmann. Com desafios técnicos e práticos, o campeonato oferece uma
+              experiência única para todas as equipes.
             </p>
           </div>
 
@@ -106,19 +107,25 @@
             <article class="feature">
               <div class="icon">🧠</div>
               <h3>Inovação</h3>
-              <p>Desenvolva tecnologias criativas e explore novas ideias de design, propulsão e navegação.</p>
+              <p>
+                Desenvolva tecnologias criativas e explore novas ideias de design, propulsão e navegação.
+              </p>
             </article>
 
             <article class="feature">
               <div class="icon">🎯</div>
               <h3>Precisão</h3>
-              <p>Teste a estabilidade, a performance e a confiabilidade dos seus modelos em condições reais.</p>
+              <p>
+                Teste a estabilidade, a performance e a confiabilidade dos seus modelos em condições reais.
+              </p>
             </article>
 
             <article class="feature">
               <div class="icon">🏆</div>
               <h3>Competição</h3>
-              <p>Viva a emoção de competir em um evento com avaliação técnica, apresentação e voo final.</p>
+              <p>
+                Viva a emoção de competir em um evento com avaliação técnica, apresentação e voo final.
+              </p>
             </article>
           </div>
         </div>
@@ -145,7 +152,8 @@
           <div class="card">
             <h3>O que será avaliado?</h3>
             <p>
-              Cada equipe será analisada por desempenho, segurança, criatividade, documentação e apresentação do projeto.
+              Cada equipe será analisada por desempenho, segurança, criatividade, documentação e
+              apresentação do projeto.
             </p>
             <p>
               O objetivo é valorizar tanto o conhecimento técnico quanto a capacidade de execução e inovação.
@@ -224,12 +232,22 @@
             <span class="eyebrow">Inscrições abertas</span>
             <h2>Participe do campeonato e mostre seu potencial.</h2>
             <p>
-              Junte sua equipe, desenvolva seu protótipo e venha competir em um evento que une inovação, tecnologia e emoção.
+              Junte sua equipe, desenvolva seu protótipo e venha competir em um evento que une inovação,
+              tecnologia e emoção.
             </p>
 
             <div class="auth-panel">
               <div class="auth-buttons">
-                <button type="button" class="btn btn-secondary auth-btn" data-provider="google">Entrar com Google</button>
+                <!-- Botão de login do Google estilizado -->
+                <div
+                  class="g_id_signin auth-btn"
+                  data-type="standard"
+                  data-shape="pill"
+                  data-theme="filled_blue"
+                  data-text="continue_with"
+                  data-size="large"
+                  data-width="300"
+                ></div>
                 <button type="button" class="btn btn-secondary auth-btn" data-provider="escola">Entrar com @escola</button>
               </div>
 
