@@ -174,7 +174,3 @@ form.addEventListener('submit', async (event) => {
     statusMessage.style.color = '#ff6b6b';
   }
 });
-window.handleCredentialResponse = function(response) {
-  console.log("Token:", response.credential);
-  // o resto do código da função aqui...
-};
