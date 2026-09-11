@@ -1,12 +1,11 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-import {
-  getDatabase,
-  ref,
-  onValue,
-  push,
-} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js';
+import { getDatabase, ref, onValue, push } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js';
 
-// Configurações do Firebase
+const teamCountEl = document.querySelector('[data-team-count]');
+const teamListEl = document.getElementById('teamList');
+const form = document.getElementById('inscricaoForm');
+const statusMessage = document.getElementById('inscricaoStatus');
+
 const firebaseConfig = {
   apiKey: 'SUA_API_KEY',
   authDomain: 'SEU_PROJETO.firebaseapp.com',
@@ -17,37 +16,38 @@ const firebaseConfig = {
   appId: '1:123456789012:web:abcdef1234567890',
 };
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-const teamsRef = ref(db, 'fogueteCup/teams');
-
-const teamCountEl = document.querySelector('[data-team-count]');
-const teamListEl = document.getElementById('teamList');
-const form = document.getElementById('inscricaoForm');
-const statusMessage = document.getElementById('inscricaoStatus');
+const firebaseReady = !Object.values(firebaseConfig).some((value) => {
+  const text = String(value);
+  return text.includes('SUA_') || text.includes('SEU_PROJETO') || text.includes('default-rtdb.firebaseio.com');
+});
 
 let registeredTeams = [];
+let db = null;
+let teamsRef = null;
 
-// Ouve as mudanças do Banco de Dados em tempo real
-onValue(teamsRef, (snapshot) => {
-  const data = snapshot.val();
-  if (data) {
-    registeredTeams = Object.keys(data).map((key) => ({
-      id: key,
-      ...data[key],
-    }));
-  } else {
-    registeredTeams = [];
-  }
-  renderTeams();
-});
+function normalizeTeam(rawTeam) {
+  if (!rawTeam || typeof rawTeam !== 'object') return null;
+
+  return {
+    name: rawTeam.name || 'Equipe sem nome',
+    email: rawTeam.email || '',
+    lider: rawTeam.lider || '',
+    aluno2: rawTeam.aluno2 || '',
+    aluno3: rawTeam.aluno3 || '',
+    aluno4: rawTeam.aluno4 || '',
+  };
+}
 
 function renderTeams() {
   const total = registeredTeams.length;
   if (teamCountEl) teamCountEl.textContent = String(total);
 
   if (!total) {
-    teamListEl.innerHTML = '<li>Nenhuma equipe registrada ainda.</li>';
+    if (firebaseReady) {
+      teamListEl.innerHTML = '<li>Nenhuma equipe registrada ainda.</li>';
+    } else {
+      teamListEl.innerHTML = '<li>Configure o Firebase para receber as inscrições em tempo real.</li>';
+    }
     return;
   }
 
@@ -62,23 +62,64 @@ function renderTeams() {
     .join('');
 }
 
-document.querySelectorAll('.auth-btn').forEach((button) => {
-  button.addEventListener('click', () => {
-    document.querySelectorAll('.auth-btn').forEach((btn) => btn.classList.remove('is-active'));
-    button.classList.add('is-active');
+function syncTeamsFromFirebase(snapshot) {
+  const data = snapshot.val();
+  const firebaseTeams = [];
 
-    const emailInput = document.getElementById('alunoEmail');
-    if (button.dataset.provider === 'escola') {
-      emailInput.placeholder = 'aluno@escola.pr.gov.br';
-      emailInput.setAttribute('aria-label', 'E-mail da escola');
-    } else {
-      emailInput.placeholder = 'aluno@gmail.com';
-      emailInput.setAttribute('aria-label', 'E-mail do Google');
-    }
+  if (data) {
+    Object.entries(data).forEach(([, value]) => {
+      const team = normalizeTeam(value);
+      if (team) firebaseTeams.push(team);
+    });
+  }
 
-    emailInput.focus();
-  });
-});
+  registeredTeams = firebaseTeams;
+  renderTeams();
+}
+
+function connectFirebase() {
+  if (!firebaseReady) {
+    statusMessage.textContent = 'Configure o Firebase para sincronizar as inscrições entre os computadores.';
+    statusMessage.style.color = '#ffd166';
+    renderTeams();
+    return;
+  }
+
+  try {
+    const app = initializeApp(firebaseConfig);
+    db = getDatabase(app);
+    teamsRef = ref(db, 'fogueteCup/teams');
+
+    onValue(teamsRef, (snapshot) => {
+      syncTeamsFromFirebase(snapshot);
+    });
+  } catch (error) {
+    console.error('Erro ao conectar ao Firebase:', error);
+    statusMessage.textContent = 'Não foi possível conectar ao Firebase. Verifique a configuração.';
+    statusMessage.style.color = '#ffd166';
+    renderTeams();
+  }
+}
+
+async function saveTeamToFirebase(team) {
+  if (!firebaseReady || !teamsRef) {
+    setStatus('Configure o Firebase antes de enviar a equipe.', false);
+    return;
+  }
+
+  try {
+    await push(teamsRef, team);
+  } catch (error) {
+    console.error('Erro ao salvar equipe no Firebase:', error);
+    setStatus('Não foi possível salvar no Firebase. Tente novamente.', false);
+    throw error;
+  }
+}
+
+function setStatus(message, isSuccess = true) {
+  statusMessage.textContent = message;
+  statusMessage.style.color = isSuccess ? '#7ef0a8' : '#ffd166';
+}
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -98,14 +139,12 @@ form.addEventListener('submit', async (event) => {
   const aluno4 = aluno4Input.value.trim();
 
   if (!email || !teamName || !lider || !aluno2 || !aluno3 || !aluno4) {
-    statusMessage.textContent = 'Preencha todos os campos da equipe antes de enviar.';
-    statusMessage.style.color = '#ffd166';
+    setStatus('Preencha todos os campos da equipe antes de enviar.', false);
     return;
   }
 
   if (!email.includes('@') || !email.includes('.')) {
-    statusMessage.textContent = 'Digite um e-mail válido para continuar.';
-    statusMessage.style.color = '#ffd166';
+    setStatus('Digite um e-mail válido para continuar.', false);
     return;
   }
 
@@ -114,27 +153,26 @@ form.addEventListener('submit', async (event) => {
   });
 
   if (alreadyExists) {
-    statusMessage.textContent = 'Essa equipe ou esse e-mail já foi inscrito.';
-    statusMessage.style.color = '#ffd166';
+    setStatus('Essa equipe ou esse e-mail já foi inscrito.', false);
     return;
   }
 
-  try {
-    await push(teamsRef, {
-      name: teamName,
-      email,
-      lider,
-      aluno2,
-      aluno3,
-      aluno4,
-    });
+  const teamData = {
+    name: teamName,
+    email,
+    lider,
+    aluno2,
+    aluno3,
+    aluno4,
+  };
 
-    statusMessage.textContent = `${teamName} foi inscrita com sucesso!`;
-    statusMessage.style.color = '#7ef0a8';
+  try {
+    await saveTeamToFirebase(teamData);
+    setStatus(`${teamName} foi inscrita com sucesso por ${email}.`);
     form.reset();
   } catch (error) {
-    console.error('Erro ao salvar no Firebase:', error);
-    statusMessage.textContent = 'Erro ao registrar. Tente novamente.';
-    statusMessage.style.color = '#ff6b6b';
+    // erro já tratado dentro do saveTeamToFirebase
   }
 });
+
+connectFirebase();
