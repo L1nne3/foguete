@@ -18,6 +18,7 @@ const analytics = getAnalytics(app);
 const db = getDatabase(app);
 const teamsRef = ref(db, 'fogueteCup/teams');
 
+// Seleção dos elementos do HTML
 const form = document.getElementById('inscricaoForm');
 const statusMessage = document.getElementById('inscricaoStatus');
 const teamListEl = document.getElementById('teamList');
@@ -83,12 +84,19 @@ function setStatus(message, isSuccess = true) {
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
 
-  const email = document.getElementById('alunoEmail').value.trim();
-  const teamName = document.getElementById('nomeEquipe').value.trim();
-  const lider = document.getElementById('nomeLider').value.trim();
-  const aluno2 = document.getElementById('aluno2').value.trim();
-  const aluno3 = document.getElementById('aluno3').value.trim();
-  const aluno4 = document.getElementById('aluno4').value.trim();
+  const emailInput = document.getElementById('alunoEmail');
+  const teamInput = document.getElementById('nomeEquipe');
+  const liderInput = document.getElementById('nomeLider');
+  const aluno2Input = document.getElementById('aluno2');
+  const aluno3Input = document.getElementById('aluno3');
+  const aluno4Input = document.getElementById('aluno4');
+
+  const email = emailInput.value.trim();
+  const teamName = teamInput.value.trim();
+  const lider = liderInput.value.trim();
+  const aluno2 = aluno2Input.value.trim();
+  const aluno3 = aluno3Input.value.trim();
+  const aluno4 = aluno4Input.value.trim();
 
   if (!email || !teamName || !lider || !aluno2 || !aluno3 || !aluno4) {
     setStatus('Preencha todos os campos da equipe antes de enviar.', false);
@@ -109,7 +117,14 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
-  const teamData = { name: teamName, email, lider, aluno2, aluno3, aluno4 };
+  const teamData = {
+    name: teamName,
+    email,
+    lider,
+    aluno2,
+    aluno3,
+    aluno4,
+  };
 
   try {
     await push(teamsRef, teamData);
@@ -117,7 +132,6 @@ form.addEventListener('submit', async (event) => {
     form.reset();
   } catch (error) {
     console.error('Erro ao salvar:', error);
-    statusMessage.textContent = 'Não foi possível salvar no Firebase. Tente novamente.';
-    statusMessage.style.color = '#ffd166';
+    setStatus('Não foi possível salvar no Firebase. Tente novamente.', false);
   }
 });
