@@ -42,42 +42,6 @@ onValue(teamsRef, (snapshot) => {
   renderTeams();
 });
 
-function decodeJwtPayload(token) {
-  try {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split('')
-        .map((c) => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`)
-        .join('')
-    );
-    return JSON.parse(jsonPayload);
-  } catch (error) {
-    console.warn('Não foi possível decodificar o token do Google:', error);
-    return {};
-  }
-}
-
-window.handleCredentialResponse = function handleCredentialResponse(response) {
-  console.log('Token JWT de login:', response.credential);
-
-  const emailInput = document.getElementById('alunoEmail');
-  const status = document.getElementById('inscricaoStatus');
-
-  if (emailInput) {
-    const payload = decodeJwtPayload(response.credential || '');
-    const emailFromGoogle = payload.email || response?.email || 'usuario@gmail.com';
-    emailInput.value = emailFromGoogle;
-    emailInput.placeholder = 'aluno@gmail.com';
-  }
-
-  if (status) {
-    status.textContent = 'Login com Google concluído. Agora finalize a inscrição da equipe.';
-    status.style.color = '#7ef0a8';
-  }
-};
-
 function renderTeams() {
   const total = registeredTeams.length;
   if (teamCountEl) teamCountEl.textContent = String(total);
