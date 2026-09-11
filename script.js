@@ -1,21 +1,26 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-import { getDatabase, ref, onValue, push } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js';
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
-const teamCountEl = document.querySelector('[data-team-count]');
-const teamListEl = document.getElementById('teamList');
-const form = document.getElementById('inscricaoForm');
-const statusMessage = document.getElementById('inscricaoStatus');
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyCeZfbi8ZjfiJdfQcev76OdcLSwZTIMcEc",
+    authDomain: "foguete-cup.firebaseapp.com",
+    databaseURL: "https://foguete-cup-default-rtdb.firebaseio.com",
+    projectId: "foguete-cup",
+    storageBucket: "foguete-cup.firebasestorage.app",
+    messagingSenderId: "1034694225214",
+    appId: "1:1034694225214:web:2d8637f897e4a395e3d06f",
+    measurementId: "G-JG77QS21GG"
+  };
 
-const firebaseConfig = {
-  apiKey: 'SUA_API_KEY',
-  authDomain: 'SEU_PROJETO.firebaseapp.com',
-  databaseURL: 'https://SEU_PROJETO-default-rtdb.firebaseio.com',
-  projectId: 'SEU_PROJETO',
-  storageBucket: 'SEU_PROJETO.appspot.com',
-  messagingSenderId: '123456789012',
-  appId: '1:123456789012:web:abcdef1234567890',
-};
-
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
 const firebaseReady = !Object.values(firebaseConfig).some((value) => {
   const text = String(value);
   return text.includes('SUA_') || text.includes('SEU_PROJETO') || text.includes('default-rtdb.firebaseio.com');
